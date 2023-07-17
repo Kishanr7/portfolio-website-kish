@@ -341,7 +341,7 @@ const Featured = () => {
         external: null,
         cta: null,
       },
-      html: '<p>Crafted a cloud-specific data migration solution utilizing AWS DMS and customized ETL tools. Devised automation scripts with Python and the boto3 module to efficiently migrate data from multiple sources to the AWS Redshift data lake while implementing rigorous data quality checks.</p>',
+      html: '<p>Crafted a cloud-specific data migration solution utilizing AWS DMS and customized ETL tools. Devised automation scripts with Python and SQL to efficiently migrate data from multiple sources to the AWS Redshift data lake while implementing rigorous data quality checks.</p>',
     },
     {
       frontmatter: {

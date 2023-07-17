@@ -135,14 +135,14 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Kishan and I enjoy playing with the data. My interest in Data
+              Hello! My name is Kishan and I enjoy building data ingestion workflows. My interest in Data
               engineering started in 2021 when I joined Infosys and started implementing my Python
               and SQL skills with the newfound knowledge of AWS cloud. It was a great learning curve
-              for me
+              for me.
             </p>
 
             <p>
-              Currently, I am building data pipelines for a Investment bank client at Infosys. My
+              Currently, I am building data pipelines for an Investment bank client at Infosys. My
               main focus these days is learning new data engineering tech and explore other
               frameworks to gain deeper understanding of the latest skills.
             </p>
@@ -152,7 +152,7 @@ const About = () => {
               and AWS as a cloud platform. one such is involing AWS API Gateway, AWS Lambda and
               DynamoDB integration to interact with databases in DynamoDB through invoking REST API
               which will invoke the lambda function that I wrote in Python using boto3 module to
-              interact with AWS API.
+              interact with the AWS API.
             </p>
 
             <p>Here are a few technologies I’ve been working with recently:</p>
