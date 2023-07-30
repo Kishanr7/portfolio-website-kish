@@ -18,10 +18,6 @@ module.exports = {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/kishan-rekhadia-757b69126/',
     },
-    {
-      name: 'Codepen',
-      url: 'https://codepen.io/bchiang7',
-    },
   ],
 
   navLinks: [
@@ -30,12 +26,12 @@ module.exports = {
       url: '/#about',
     },
     {
-      name: 'Experience',
-      url: '/#jobs',
-    },
-    {
       name: 'Work',
       url: '/#projects',
+    },
+    {
+      name: 'Experience',
+      url: '/#jobs',
     },
     {
       name: 'Contact',
