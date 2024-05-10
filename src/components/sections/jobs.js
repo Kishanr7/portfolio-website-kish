@@ -170,6 +170,18 @@ const dataForJobs = [
   {
     node: {
       frontmatter: {
+        title: 'Consultant - Data Engineer',
+        company: 'Deloitte',
+        location: 'Remote',
+        range: 'Oct 23 - Present',
+        url: 'www.deloitte.com',
+      },
+      html: '<ul>\n<li>Team member of Risk and Finance data transformation team which provides data modernization to a large UK Financial Bank.</li>\n<li>Worked on client’s existing data architecture analysis and find pain points by analyzing data points across the whole data landscape in a multi cloud enviornment.</li>\n<li>Provided data modelling service to scale up the new data mart for evaluating disclosure reports.</li>\n<li>Worked on defining best recommendation for 3rd party tools in market for seamless ETL transformation and data integration across business processes by combining business requirements with IT technical stands.</li>\n<li> POC for seamless integration of AWS data mart with oracle world for mapping of attributes from one cloud to another.</li>\n</ul>',
+    },
+  },
+  {
+    node: {
+      frontmatter: {
         title: 'Data Engineer',
         company: 'Infosys',
         location: 'Remote',
