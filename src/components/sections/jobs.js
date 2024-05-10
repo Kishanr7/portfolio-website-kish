@@ -185,7 +185,7 @@ const dataForJobs = [
         title: 'Data Engineer',
         company: 'Infosys',
         location: 'Remote',
-        range: 'June 21 - Present',
+        range: 'June 21 - Sept 23',
         url: 'https://www.infosys.com/',
       },
       html: '<ul>\n<li>Delivering high-quality, robust production code for a data engineering project for clients that includes major investment banking firm from US.</li>\n<li>Working alongside creative team members of the RKPA track to lead the data migration from on-prem to a dedicated warehouse in cloud to fulfill business requirements</li>\n<li>Lead the charge of desiging and developing functional ETL pipelines with the use of Airflow and Python.</li>\n<li>Expedited Code and performance enhancement for the ease of batch processing in Production. </li>\n<li> Collaborated with Analytics team to develop code for migrating Quicksight object and help them with Production activities. </li>\n</ul>',
