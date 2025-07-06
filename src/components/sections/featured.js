@@ -363,16 +363,6 @@ const Featured = () => {
       },
       html: '<p>Created an efficient Python script, which employs intricate SQL queries to scrutinize two schemas across different databases for discrepancies, and generates a comprehensive summary in a CSV file, facilitating further analysis.</p>',
     },
-    {
-      frontmatter: {
-        title: 'Covid-Resource-Tracker.',
-        tech: ['AWS'],
-        github: null,
-        external: null,
-        cta: null,
-      },
-      html: '<p>• Designed and deployed a simple, yet powerful, website using the Flask framework in Python. The website employs CRUD functionalities to display real-time COVID resource availability at a designated location, and has been successfully deployed on the Heroku app.</p>',
-    },
   ];
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
