@@ -176,7 +176,17 @@ const dataForJobs = [
         range: 'Oct 23 - Present',
         url: 'www.deloitte.com',
       },
-      html: '<ul>\n<li>Team member of Risk and Finance data transformation team which provides data modernization to a large UK Financial Bank.</li>\n<li>Worked on client’s existing data architecture analysis and find pain points by analyzing data points across the whole data landscape in a multi cloud enviornment.</li>\n<li>Provided data modelling service to scale up the new data mart for evaluating disclosure reports.</li>\n<li>Worked on defining best recommendation for 3rd party tools in market for seamless ETL transformation and data integration across business processes by combining business requirements with IT technical stands.</li>\n<li> POC for seamless integration of AWS data mart with oracle world for mapping of attributes from one cloud to another.</li>\n</ul>',
+      html:
+        '<ul>\n' +
+        '<li>Led a team of 3 in designing and developing scalable data ingestion and data masking pipelines for a major Indian banking client.</li>\n' +
+        '<li>Designed and implemented full-load and incremental data ingestion pipelines transferring 10 TB from on-prem Oracle and 30 TB from SAS Data Warehouse to AWS S3 in optimized Parquet format using AWS Glue and DMS, reducing storage footprint by 65% and improving analytics performance.</li>\n' +
+        '<li>Built a deterministic data masking pipeline using AWS Glue and PySpark to encrypt PII fields while preserving referential integrity, with role-based access control enforced via Lake Formation.</li>\n' +
+        '<li>Created a metadata-driven reconciliation framework to validate data across Oracle, S3, RDS, and Redshift using centralized metadata in Aurora PostgreSQL with flexible rule-based validation and CSV reporting.</li>\n' +
+        '<li>Developed end-to-end orchestration using Step Functions, AWS Lambda, and AWS Glue to automate ingestion, masking, and reconciliation with dependency handling and alerts via Amazon SNS.</li>\n' +
+        '<li>Team member of the Risk and Finance data transformation program for a major UK financial bank, driving modernization of data architecture and identifying bottlenecks in a multi-cloud environment.</li>\n' +
+        '<li>Provided data modeling expertise to scale new data marts used for evaluating financial disclosure reports.</li>\n' +
+        '<li>Recommended third-party ETL and data integration tools by aligning business needs with technical standards and best practices.</li>\n' +
+        '</ul>',
     },
   },
   {
@@ -188,7 +198,17 @@ const dataForJobs = [
         range: 'June 21 - Sept 23',
         url: 'https://www.infosys.com/',
       },
-      html: '<ul>\n<li>Delivering high-quality, robust production code for a data engineering project for clients that includes major investment banking firm from US.</li>\n<li>Working alongside creative team members of the RKPA track to lead the data migration from on-prem to a dedicated warehouse in cloud to fulfill business requirements</li>\n<li>Lead the charge of desiging and developing functional ETL pipelines with the use of Airflow and Python.</li>\n<li>Expedited Code and performance enhancement for the ease of batch processing in Production. </li>\n<li> Collaborated with Analytics team to develop code for migrating Quicksight object and help them with Production activities. </li>\n</ul>',
+      html:
+        '<ul>\n' +
+        '<li>Delivered data modernization solutions for a leading US financial institution, enabling seamless migration of legacy data systems to AWS and supporting hybrid cloud adoption.</li>\n' +
+        '<li>Core contributor to the Reporting Data Lake Platform and Analytics (RKPA) initiative, responsible for modernizing the enterprise data warehouse by designing scalable ETL pipelines and integrating 10+ legacy data sources into a unified AWS-based data lake architecture.</li>\n' +
+        '<li>Played a key backend engineering role in the development of modular, reusable Python microservices deployed on AWS infrastructure (EC2, Lambda, S3), powering ingestion, transformation, and metadata workflows.</li>\n' +
+        '<li>Designed and developed robust, reusable ETL pipelines in Python for high-volume data ingestion and transformation into a centralized S3-based data lake, supporting schema evolution and idempotency using AWS Glue and custom logic.</li>\n' +
+        '<li>Contributed to CI/CD, unit testing, and production deployment of data lake components, leading to a successful production release with zero critical defects.</li>\n' +
+        '<li>Developed and orchestrated end-to-end batch workflows using Apache Airflow DAGs for automated pipeline execution, dependency resolution, and failure alerting, reducing manual intervention by 90%.</li>\n' +
+        '<li>Enhanced production performance by implementing multi-threading in critical modules, achieving a 5x improvement in processing efficiency.</li>\n' +
+        '<li>Automated the migration of Amazon QuickSight dashboards, datasets, and analyses across environments and AWS accounts using custom Python scripts with Boto3, reducing deployment time by 70% and enabling version control of artifacts.</li>\n' +
+        '</ul>',
     },
   },
 ];

@@ -65,9 +65,10 @@ const Hero = () => {
   const four = (
     <>
       <p>
-        I'm a data engineer specializing in building and designing data workflows on cloud.
-        Presently, my primary focus revolves around constructing sophisticated data pipelines for a
-        client project at Infosys.
+        I'm a data engineer with strong data architecture expertise, specializing in designing and
+        building scalable cloud-based data workflows. At Deloitte, I focus on developing advanced
+        data pipelines and architecting end-to-end ingestion, data masking, and reconciliation
+        strategies to ensure data integrity, security, and reliability for enterprise clients.
       </p>
     </>
   );

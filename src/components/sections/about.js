@@ -125,7 +125,16 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['Python', 'SQL', 'AWS', 'PySpark', 'Airflow', 'Docker'];
+  const skills = [
+    'Python',
+    'SQL',
+    'AWS (Glue, DMS, Redshift, Lake Formation, Step Functions, Lambda, Athena, SNS)',
+    'PySpark',
+    'Airflow (MWAA)',
+    'Docker',
+    'DBT',
+    'Data Modeling & Reconciliation Frameworks',
+  ];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,24 +144,26 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Kishan and I enjoy building data ingestion workflows. My interest in Data
-              engineering started in 2021 when I joined Infosys and started implementing my Python
-              and SQL skills with the newfound knowledge of AWS cloud. It was a great learning curve
-              for me.
+              Hello! My name is Kishan and I enjoy architecting and building complex data ingestion
+              and transformation workflows. My journey into data engineering started in 2021 when I
+              joined Infosys and began applying my Python and SQL skills alongside AWS cloud
+              technologies. It was a transformative experience that sparked my passion for solving
+              data-driven problems.
             </p>
 
             <p>
-              Currently, I am building data pipelines for an Investment bank client at Infosys. My
-              main focus these days is learning new data engineering tech and explore other
-              frameworks to gain deeper understanding of the latest skills.
+              Currently, I work at Deloitte as a Data Engineer, where I lead the design and
+              development of scalable data ingestion pipelines, deterministic data masking
+              solutions, and robust reconciliation frameworks for banking and financial services
+              clients. My role involves end-to-end architecture—right from ingestion using AWS Glue,
+              DMS, and PySpark, to implementing governance and control using role-based masking and
+              metadata-driven reconciliation strategies across multi-cloud environments.
             </p>
 
             <p>
-              I also recently worked on various ETL projects with using both SQL and NoSQL databases
-              and AWS as a cloud platform. one such is involing AWS API Gateway, AWS Lambda and
-              DynamoDB integration to interact with databases in DynamoDB through invoking REST API
-              which will invoke the lambda function that I wrote in Python using boto3 module to
-              interact with the AWS API.
+              I have also contributed to enterprise data modeling, data mart optimization, and
+              automation of complex data orchestration using AWS Step Functions, Lambda, and SNS,
+              ensuring seamless integration and real-time processing across systems.
             </p>
 
             <p>Here are a few technologies I’ve been working with recently:</p>
