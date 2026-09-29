@@ -1,289 +1,270 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import styled, { css } from 'styled-components';
+import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 import { navLinks } from '@config';
-import { loaderDelay } from '@utils';
-import { useScrollDirection, usePrefersReducedMotion } from '@hooks';
-import { Menu } from '@components';
-import { IconLogo, IconHex } from '@components/icons';
 
-const StyledHeader = styled.header`
-  ${({ theme }) => theme.mixins.flexBetween};
-  position: fixed;
+const Header = styled.header`
+  position: sticky;
   top: 0;
-  z-index: 11;
-  padding: 0px 50px;
-  width: 100%;
-  height: var(--nav-height);
-  background-color: rgba(10, 25, 47, 0.85);
-  filter: none !important;
-  pointer-events: auto !important;
-  user-select: auto !important;
-  backdrop-filter: blur(10px);
-  transition: var(--transition);
+  z-index: 30;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--border);
+  background: rgba(7, 18, 15, 0.88);
+  backdrop-filter: blur(18px);
 
-  @media (max-width: 1080px) {
-    padding: 0 40px;
-  }
-  @media (max-width: 768px) {
-    padding: 0 25px;
+  .inner {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    ${props =>
-    props.scrollDirection === 'up' &&
-      !props.scrolledToTop &&
-      css`
-        height: var(--nav-scroll-height);
-        transform: translateY(0px);
-        background-color: rgba(10, 25, 47, 0.85);
-        box-shadow: 0 10px 30px -10px var(--navy-shadow);
-      `};
-
-    ${props =>
-    props.scrollDirection === 'down' &&
-      !props.scrolledToTop &&
-      css`
-        height: var(--nav-scroll-height);
-        transform: translateY(calc(var(--nav-scroll-height) * -1));
-        box-shadow: 0 10px 30px -10px var(--navy-shadow);
-      `};
+  .brand {
+    display: inline-grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    color: var(--mint-300);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    transition: background var(--transition), color var(--transition);
   }
-`;
 
-const StyledNav = styled.nav`
-  ${({ theme }) => theme.mixins.flexBetween};
-  position: relative;
-  width: 100%;
-  color: var(--lightest-slate);
-  font-family: var(--font-mono);
-  counter-reset: item 0;
-  z-index: 12;
-
-  .logo {
-    ${({ theme }) => theme.mixins.flexCenter};
-
-    a {
-      color: var(--green);
-      width: 42px;
-      height: 42px;
-      position: relative;
-      z-index: 1;
-
-      .hex-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: var(--transition);
-        }
-      }
-
-      .logo-container {
-        position: relative;
-        z-index: 1;
-        svg {
-          fill: none;
-          user-select: none;
-          @media (prefers-reduced-motion: no-preference) {
-            transition: var(--transition);
-          }
-          polygon {
-            fill: var(--navy);
-          }
-        }
-      }
-
-      &:hover,
-      &:focus {
-        outline: 0;
-        transform: translate(-4px, -4px);
-        .hex-container {
-          transform: translate(4px, 3px);
-        }
-      }
-    }
+  .brand:hover {
+    background: var(--mint-300);
+    color: var(--ink-950);
   }
-`;
 
-const StyledLinks = styled.div`
-  display: flex;
-  align-items: center;
+  .desktop-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-  @media (max-width: 768px) {
+  .desktop-links a {
+    color: var(--sage-300);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    transition: color var(--transition);
+  }
+
+  .desktop-links a:hover {
+    color: var(--mint-300);
+  }
+  .desktop-links .resume {
+    color: var(--cream-100);
+  }
+
+  .desktop-links .resume::after {
+    content: 'update pending';
+    margin-left: 8px;
+    color: var(--amber-300);
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+
+  .menu-button {
+    display: none;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--ink-850);
+    color: var(--cream-50);
+    cursor: pointer;
+  }
+
+  .menu-button span,
+  .menu-button span::before,
+  .menu-button span::after {
+    display: block;
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    content: '';
+    transition: transform var(--transition);
+  }
+
+  .menu-button span::before {
+    transform: translateY(-6px);
+  }
+  .menu-button span::after {
+    transform: translateY(5px);
+  }
+
+  .menu-button.open span {
+    background: transparent;
+  }
+  .menu-button.open span::before {
+    transform: translateY(1px) rotate(45deg);
+  }
+  .menu-button.open span::after {
+    transform: rotate(-45deg);
+  }
+
+  .mobile-panel {
     display: none;
   }
 
-  ol {
-    ${({ theme }) => theme.mixins.flexBetween};
-    padding: 0;
-    margin: 0;
-    list-style: none;
-
-    li {
-      margin: 0 5px;
-      position: relative;
-      counter-increment: item 1;
-      font-size: var(--fz-xs);
-
-      a {
-        padding: 10px;
-
-        &:before {
-          content: '0' counter(item) '.';
-          margin-right: 5px;
-          color: var(--green);
-          font-size: var(--fz-xxs);
-          text-align: right;
-        }
-      }
+  @media (max-width: 860px) {
+    .desktop-links {
+      display: none;
     }
-  }
+    .menu-button {
+      display: grid;
+    }
 
-  .resume-button {
-    ${({ theme }) => theme.mixins.smallButton};
-    margin-left: 15px;
-    font-size: var(--fz-xs);
+    .mobile-panel {
+      position: fixed;
+      inset: var(--header-height) 0 auto;
+      display: grid;
+      width: 100%;
+      gap: 22px;
+      margin: 0;
+      padding: 32px 20px 38px;
+      border: 0;
+      border-bottom: 1px solid var(--border-strong);
+      background: var(--ink-850);
+      color: inherit;
+      box-shadow: var(--shadow);
+      visibility: ${props => (props.open ? 'visible' : 'hidden')};
+      opacity: ${props => (props.open ? 1 : 0)};
+      transform: translateY(${props => (props.open ? '0' : '-12px')});
+      transition: opacity var(--transition), transform var(--transition),
+        visibility var(--transition);
+    }
+
+    .mobile-panel a {
+      width: min(100%, 420px);
+      margin-inline: auto;
+      color: var(--cream-100);
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .mobile-panel .resume {
+      color: var(--amber-300);
+      font-size: 16px;
+    }
   }
 `;
 
-const Nav = ({ isHome }) => {
-  const [isMounted, setIsMounted] = useState(!isHome);
-  const scrollDirection = useScrollDirection('down');
-  const [scrolledToTop, setScrolledToTop] = useState(true);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  const handleScroll = () => {
-    setScrolledToTop(window.pageYOffset < 50);
-  };
+const Nav = () => {
+  const [open, setOpen] = useState(false);
+  const buttonRef = useRef(null);
+  const panelRef = useRef(null);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
+    document.body.classList.toggle('menu-open', open);
+    if (open) {
+      panelRef.current?.querySelector('a')?.focus();
+    }
+    return () => document.body.classList.remove('menu-open');
+  }, [open]);
+
+  const closeMenu = () => setOpen(false);
+
+  const handleKeyDown = event => {
+    if (event.key === 'Escape') {
+      closeMenu();
+      buttonRef.current?.focus();
       return;
     }
 
-    const timeout = setTimeout(() => {
-      setIsMounted(true);
-    }, 100);
+    if (event.key !== 'Tab') {
+      return;
+    }
+    const focusable = Array.from(panelRef.current.querySelectorAll('a, button'));
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
-    window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
 
-    return () => {
-      clearTimeout(timeout);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const timeout = isHome ? loaderDelay : 0;
-  const fadeClass = isHome ? 'fade' : '';
-  const fadeDownClass = isHome ? 'fadedown' : '';
-
-  const Logo = (
-    <div className="logo" tabIndex="-1">
-      {isHome ? (
-        <a href="/" aria-label="home">
-          <div className="hex-container">
-            <IconHex />
-          </div>
-          <div className="logo-container">
-            <IconLogo />
-          </div>
-        </a>
-      ) : (
-        <Link to="/" aria-label="home">
-          <div className="hex-container">
-            <IconHex />
-          </div>
-          <div className="logo-container">
-            <IconLogo />
-          </div>
-        </Link>
-      )}
-    </div>
-  );
-
-  const ResumeLink = (
-    <a className="resume-button" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-      Resume
-    </a>
-  );
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open]);
 
   return (
-    <StyledHeader scrollDirection={scrollDirection} scrolledToTop={scrolledToTop}>
-      <StyledNav>
-        {prefersReducedMotion ? (
-          <>
-            {Logo}
+    <Header open={open}>
+      <nav className="container inner" aria-label="Primary navigation">
+        <a className="brand" href="#content" aria-label="Kishan Rekhadia, home">
+          KR
+        </a>
 
-            <StyledLinks>
-              <ol>
-                {navLinks &&
-                  navLinks.map(({ url, name }, i) => (
-                    <li key={i}>
-                      <Link to={url}>{name}</Link>
-                    </li>
-                  ))}
-              </ol>
-              <div>{ResumeLink}</div>
-            </StyledLinks>
+        <ul className="desktop-links">
+          {navLinks.map(link => (
+            <li key={link.name}>
+              <a href={link.url}>{link.name}</a>
+            </li>
+          ))}
+          <li>
+            <a
+              className="resume"
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Earlier career snapshot; current role details are on this page"
+            >
+              Résumé
+            </a>
+          </li>
+        </ul>
 
-            <Menu />
-          </>
-        ) : (
-          <>
-            <TransitionGroup component={null}>
-              {isMounted && (
-                <CSSTransition classNames={fadeClass} timeout={timeout}>
-                  <>{Logo}</>
-                </CSSTransition>
-              )}
-            </TransitionGroup>
+        <button
+          ref={buttonRef}
+          className={`menu-button${open ? ' open' : ''}`}
+          type="button"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          aria-label={open ? 'Close navigation' : 'Open navigation'}
+          onClick={() => setOpen(value => !value)}
+        >
+          <span aria-hidden="true" />
+        </button>
 
-            <StyledLinks>
-              <ol>
-                <TransitionGroup component={null}>
-                  {isMounted &&
-                    navLinks &&
-                    navLinks.map(({ url, name }, i) => (
-                      <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
-                        <li key={i} style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
-                          <Link to={url}>{name}</Link>
-                        </li>
-                      </CSSTransition>
-                    ))}
-                </TransitionGroup>
-              </ol>
-
-              <TransitionGroup component={null}>
-                {isMounted && (
-                  <CSSTransition classNames={fadeDownClass} timeout={timeout}>
-                    <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
-                      {ResumeLink}
-                    </div>
-                  </CSSTransition>
-                )}
-              </TransitionGroup>
-            </StyledLinks>
-
-            <TransitionGroup component={null}>
-              {isMounted && (
-                <CSSTransition classNames={fadeClass} timeout={timeout}>
-                  <Menu />
-                </CSSTransition>
-              )}
-            </TransitionGroup>
-          </>
-        )}
-      </StyledNav>
-    </StyledHeader>
+        <dialog
+          ref={panelRef}
+          id="mobile-navigation"
+          className="mobile-panel"
+          aria-label="Mobile navigation"
+          open={open}
+          aria-hidden={!open}
+        >
+          {navLinks.map(link => (
+            <a key={link.name} href={link.url} onClick={closeMenu} tabIndex={open ? 0 : -1}>
+              {link.name}
+            </a>
+          ))}
+          <a
+            className="resume"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            tabIndex={open ? 0 : -1}
+          >
+            Earlier résumé · update pending ↗
+          </a>
+        </dialog>
+      </nav>
+    </Header>
   );
-};
-
-Nav.propTypes = {
-  isHome: PropTypes.bool,
 };
 
 export default Nav;

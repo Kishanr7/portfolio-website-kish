@@ -1,74 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
-import { Helmet } from 'react-helmet';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { navDelay } from '@utils';
-import { Layout } from '@components';
-import { usePrefersReducedMotion } from '@hooks';
+import { Head, Layout } from '@components';
 
-const StyledMainContainer = styled.main`
-  ${({ theme }) => theme.mixins.flexCenter};
-  flex-direction: column;
+const NotFound = styled.section`
+  display: grid;
+  min-height: calc(100vh - var(--header-height));
+  place-items: center;
+  padding: 80px 0;
+  text-align: center;
+
+  .code {
+    margin-bottom: 12px;
+    color: var(--mint-300);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  h1 {
+    margin-bottom: 18px;
+    font-size: clamp(48px, 10vw, 92px);
+    letter-spacing: -0.04em;
+  }
+  p {
+    max-width: 480px;
+    margin: 0 auto 28px;
+    color: var(--sage-400);
+  }
 `;
-const StyledTitle = styled.h1`
-  color: var(--green);
-  font-family: var(--font-mono);
-  font-size: clamp(100px, 25vw, 200px);
-  line-height: 1;
-`;
-const StyledSubtitle = styled.h2`
-  font-size: clamp(30px, 5vw, 50px);
-  font-weight: 400;
-`;
-const StyledHomeButton = styled(Link)`
-  ${({ theme }) => theme.mixins.bigButton};
-  margin-top: 40px;
-`;
 
-const NotFoundPage = ({ location }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    const timeout = setTimeout(() => setIsMounted(true), navDelay);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const content = (
-    <StyledMainContainer className="fillHeight">
-      <StyledTitle>404</StyledTitle>
-      <StyledSubtitle>Page Not Found</StyledSubtitle>
-      <StyledHomeButton to="/">Go Home</StyledHomeButton>
-    </StyledMainContainer>
-  );
-
-  return (
-    <Layout location={location}>
-      <Helmet title="Page Not Found" />
-
-      {prefersReducedMotion ? (
-        <>{content}</>
-      ) : (
-        <TransitionGroup component={null}>
-          {isMounted && (
-            <CSSTransition timeout={500} classNames="fadeup">
-              {content}
-            </CSSTransition>
-          )}
-        </TransitionGroup>
-      )}
-    </Layout>
-  );
-};
-
-NotFoundPage.propTypes = {
-  location: PropTypes.object.isRequired,
-};
+const NotFoundPage = () => (
+  <Layout>
+    <Head
+      title="Page not found | Kishan Rekhadia"
+      description="The requested page could not be found."
+    />
+    <NotFound>
+      <div className="container">
+        <p className="code">HTTP 404</p>
+        <h1>This route has moved on.</h1>
+        <p>The portfolio has been streamlined. Return to the homepage to continue.</p>
+        <Link className="button" to="/">
+          Back to the portfolio
+        </Link>
+      </div>
+    </NotFound>
+  </Layout>
+);
 
 export default NotFoundPage;

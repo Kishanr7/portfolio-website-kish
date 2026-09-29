@@ -1,75 +1,84 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { srConfig, email } from '@config';
-import sr from '@utils/sr';
-import { usePrefersReducedMotion } from '@hooks';
+import { email } from '@config';
 
-const StyledContactSection = styled.section`
-  max-width: 600px;
-  margin: 0 auto 100px;
-  text-align: center;
-
-  @media (max-width: 768px) {
-    margin: 0 auto 50px;
+const ContactSection = styled.section`
+  .card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 38px;
+    align-items: end;
+    padding: clamp(32px, 7vw, 72px);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--ink-800), var(--ink-850));
+    box-shadow: var(--shadow);
   }
 
-  .overline {
-    display: block;
-    margin-bottom: 20px;
-    color: var(--green);
+  h2 {
+    max-width: 760px;
+    margin-bottom: 18px;
+    font-size: clamp(40px, 6vw, 68px);
+    letter-spacing: -0.035em;
+  }
+  .copy {
+    max-width: 720px;
+    color: var(--sage-300);
+  }
+  .actions {
+    display: grid;
+    gap: 10px;
+    min-width: 220px;
+  }
+  .linkedin {
+    color: var(--cream-100);
     font-family: var(--font-mono);
-    font-size: var(--fz-md);
-    font-weight: 400;
-
-    &:before {
-      bottom: 0;
-      font-size: var(--fz-sm);
-    }
-
-    &:after {
-      display: none;
-    }
+    font-size: 11px;
+    text-align: center;
+  }
+  .linkedin:hover {
+    color: var(--mint-300);
   }
 
-  .title {
-    font-size: clamp(40px, 5vw, 60px);
-  }
-
-  .email-link {
-    ${({ theme }) => theme.mixins.bigButton};
-    margin-top: 50px;
+  @media (max-width: 800px) {
+    .card {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    .actions {
+      min-width: 0;
+    }
   }
 `;
 
-const Contact = () => {
-  const revealContainer = useRef(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
-
-  return (
-    <StyledContactSection id="contact" ref={revealContainer}>
-      <h2 className="numbered-heading overline">What’s Next?</h2>
-
-      <h2 className="title">Get In Touch</h2>
-
-      <p>
-        I’m currently looking for new opportunities and would like to get in touch with recruiters.
-        whether you have opportunities for me or just want to say hi, my inbox is always open. I’ll
-        try my best to get back to you!
-      </p>
-
-      <a className="email-link" href={`mailto:${email}`}>
-        Say Hello
-      </a>
-    </StyledContactSection>
-  );
-};
+const Contact = () => (
+  <ContactSection id="contact" className="section-shell" aria-labelledby="contact-title">
+    <div className="container">
+      <div className="card">
+        <div>
+          <p className="eyebrow">Contact</p>
+          <h2 id="contact-title">Building a data platform that needs to work in the real world?</h2>
+          <p className="copy">
+            I’m open to conversations with engineering leaders, recruiters and collaborators about
+            senior data engineering and suitable lead data engineering opportunities.
+          </p>
+        </div>
+        <div className="actions">
+          <a className="button" href={`mailto:${email}`}>
+            Email Kishan
+          </a>
+          <a
+            className="linkedin"
+            href="https://www.linkedin.com/in/kishan-rekhadia-757b69126/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Connect on LinkedIn ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </ContactSection>
+);
 
 export default Contact;

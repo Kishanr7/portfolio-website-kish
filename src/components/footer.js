@@ -1,93 +1,69 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Icon } from '@components/icons';
-import { socialMedia } from '@config';
+import { email, socialMedia } from '@config';
 
 const StyledFooter = styled.footer`
-  ${({ theme }) => theme.mixins.flexCenter};
-  flex-direction: column;
-  height: auto;
-  min-height: 70px;
-  padding: 15px;
-  text-align: center;
-`;
+  border-top: 1px solid var(--border);
+  padding: 30px 0;
 
-const StyledSocialLinks = styled.div`
-  display: none;
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
 
-  @media (max-width: 768px) {
-    display: block;
-    width: 100%;
-    max-width: 270px;
-    margin: 0 auto 10px;
-    color: var(--light-slate);
+  p {
+    margin: 0;
+    color: var(--sage-400);
+    font-family: var(--font-mono);
+    font-size: 11px;
   }
 
   ul {
-    ${({ theme }) => theme.mixins.flexBetween};
-    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
     margin: 0;
+    padding: 0;
     list-style: none;
-
-    a {
-      padding: 10px;
-      svg {
-        width: 20px;
-        height: 20px;
-      }
-    }
   }
-`;
-
-const StyledCredit = styled.div`
-  color: var(--light-slate);
-  font-family: var(--font-mono);
-  font-size: var(--fz-xxs);
-  line-height: 1;
 
   a {
-    padding: 10px;
+    color: var(--sage-300);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  a:hover {
+    color: var(--mint-300);
   }
 
-  .github-stats {
-    margin-top: 10px;
-
-    & > span {
-      display: inline-flex;
-      align-items: center;
-      margin: 0 7px;
-    }
-    svg {
-      display: inline-block;
-      margin-right: 5px;
-      width: 14px;
-      height: 14px;
+  @media (max-width: 660px) {
+    .inner {
+      align-items: flex-start;
+      flex-direction: column-reverse;
     }
   }
 `;
 
 const Footer = () => (
   <StyledFooter>
-    <StyledSocialLinks>
-      <ul>
-        {socialMedia &&
-          socialMedia.map(({ name, url }, i) => (
-            <li key={i}>
-              <a href={url} aria-label={name}>
-                <Icon name={name} />
-              </a>
-            </li>
-          ))}
+    <div className="container inner">
+      <p>Designed and built by Kishan Rekhadia · Surat, India</p>
+      <ul aria-label="Contact and social links">
+        {socialMedia.map(({ name, url }) => (
+          <li key={name}>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {name}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href={`mailto:${email}`}>Email</a>
+        </li>
       </ul>
-    </StyledSocialLinks>
-
-    <StyledCredit tabindex="-1"></StyledCredit>
+    </div>
   </StyledFooter>
 );
-
-Footer.propTypes = {
-  githubInfo: PropTypes.object,
-};
 
 export default Footer;

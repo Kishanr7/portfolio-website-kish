@@ -2,11 +2,11 @@ const config = require('./src/config');
 
 module.exports = {
   siteMetadata: {
-    title: 'Kishan Rekhadia',
+    title: 'Kishan Rekhadia | Senior Consultant, Data Engineering',
     description:
-      'Kishan Rekhadia is a backend engineer specializing in building and designing data workflows on cloud.',
-    siteUrl: 'https://brittanychiang.com', // No trailing slash allowed!
-    image: '/kpng.png', // Path to your image you placed in the 'static' folder
+      'Senior Consultant in Data Engineering building AWS financial-data platforms, migration pipelines, reconciliation tooling and cloud automation.',
+    siteUrl: 'https://kish7.netlify.app',
+    image: '/kishan-rekhadia-og.png',
     twitterUsername: '@kish07_',
   },
   plugins: [
@@ -15,21 +15,32 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        createLinkInHead: false,
+        output: '/',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: 'https://kish7.netlify.app',
+        sitemap: 'https://kish7.netlify.app/sitemap-index.xml',
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Kishan Rekhadia',
+        name: 'Kishan Rekhadia | Data Engineering',
         short_name: 'Kishan Rekhadia',
         start_url: '/',
         background_color: config.colors.darkNavy,
-        theme_color: config.colors.navy,
+        theme_color: config.colors.green,
         display: 'minimal-ui',
-        icon: 'src/images/logo.png',
+        icon: 'src/images/monogram.png',
       },
     },
-    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -147,12 +158,6 @@ module.exports = {
             },
           },
         ],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-45666519-2',
       },
     },
   ],

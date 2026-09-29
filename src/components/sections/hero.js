@@ -1,105 +1,213 @@
-import React, { useState, useEffect } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React from 'react';
 import styled from 'styled-components';
-import { navDelay, loaderDelay } from '@utils';
-import { usePrefersReducedMotion } from '@hooks';
+import { email } from '@config';
 
-const StyledHeroSection = styled.section`
-  ${({ theme }) => theme.mixins.flexCenter};
-  flex-direction: column;
-  align-items: flex-start;
-  min-height: 100vh;
-  height: 100vh;
-  padding: 0;
+const HeroSection = styled.section`
+  display: grid;
+  min-height: calc(100svh - var(--header-height));
+  align-items: center;
+  padding: clamp(58px, 8vw, 104px) 0;
 
-  @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
-    height: auto;
-    padding-top: var(--nav-height);
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(330px, 0.7fr);
+    gap: clamp(44px, 6vw, 76px);
+    align-items: center;
   }
 
   h1 {
-    margin: 0 0 30px 4px;
-    color: var(--green);
-    font-family: var(--font-mono);
-    font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
-    font-weight: 400;
+    max-width: 850px;
+    margin-bottom: 24px;
+    font-size: clamp(52px, 6.2vw, 80px);
+    letter-spacing: -0.045em;
+  }
 
-    @media (max-width: 480px) {
-      margin: 0 0 20px 2px;
+  h1 span {
+    display: block;
+    color: var(--mint-300);
+  }
+
+  .intro {
+    max-width: 690px;
+    margin-bottom: 32px;
+    color: var(--sage-300);
+    font-size: clamp(20px, 2vw, 25px);
+    line-height: 1.4;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .microcopy {
+    max-width: 650px;
+    margin-top: 20px;
+    color: var(--sage-400);
+    font-size: 15px;
+  }
+
+  .system-card {
+    position: relative;
+    padding: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(145deg, rgba(13, 31, 25, 0.94), rgba(7, 18, 15, 0.86));
+    box-shadow: var(--shadow);
+  }
+
+  .system-card::after {
+    position: absolute;
+    right: -70px;
+    bottom: -90px;
+    width: 220px;
+    height: 220px;
+    border: 1px solid rgba(155, 232, 194, 0.18);
+    border-radius: 50%;
+    content: '';
+  }
+
+  .card-label {
+    margin-bottom: 28px;
+    color: var(--amber-300);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .pipeline {
+    display: grid;
+    gap: 13px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pipeline li {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 13px;
+    align-items: center;
+    color: var(--cream-100);
+    font-size: 17px;
+  }
+
+  .pipeline span {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    color: var(--mint-300);
+    font-family: var(--font-mono);
+    font-size: 10px;
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stack span {
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: rgba(155, 232, 194, 0.08);
+    color: var(--sage-300);
+    font-family: var(--font-mono);
+    font-size: 10px;
+  }
+
+  @media (max-width: 900px) {
+    min-height: auto;
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .system-card {
+      max-width: 600px;
     }
   }
 
-  h3 {
-    margin-top: 5px;
-    color: var(--slate);
-    line-height: 0.9;
-  }
-
-  p {
-    margin: 20px 0 0;
-    max-width: 540px;
-  }
-
-  .email-link {
-    ${({ theme }) => theme.mixins.bigButton};
-    margin-top: 50px;
+  @media (max-width: 520px) {
+    h1 {
+      font-size: clamp(46px, 15vw, 64px);
+    }
+    .actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+    .button {
+      width: 100%;
+    }
+    .system-card {
+      padding: 22px;
+    }
   }
 `;
 
-const Hero = () => {
-  const [isMounted, setIsMounted] = useState(false);
-  const prefersReducedMotion = usePrefersReducedMotion();
+const Hero = () => (
+  <HeroSection aria-labelledby="hero-title">
+    <div className="container grid">
+      <div>
+        <p className="eyebrow">Kishan Rekhadia · Senior Consultant, Data Engineering</p>
+        <h1 id="hero-title">
+          AWS data systems,
+          <span>engineered to hold up.</span>
+        </h1>
+        <p className="intro">
+          I build and lead delivery for financial-data platforms where migration scale, data
+          correctness, performance and operating cost all matter.
+        </p>
+        <div className="actions">
+          <a className="button" href="#impact">
+            See the evidence ↓
+          </a>
+          <a className="button secondary" href={`mailto:${email}`}>
+            Start a conversation
+          </a>
+        </div>
+        <p className="microcopy" id="resume-note">
+          5+ years across Deloitte and Infosys. The current career record is on this page; the{' '}
+          <a className="text-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            downloadable résumé
+          </a>{' '}
+          is an earlier snapshot and is being updated.
+        </p>
+      </div>
 
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    const timeout = setTimeout(() => setIsMounted(true), navDelay);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const one = <h1>Hi, my name is</h1>;
-  const two = <h2 className="big-heading">Kishan Rekhadia.</h2>;
-  const three = <h3 className="big-heading">I build data pipelines.</h3>;
-  const four = (
-    <>
-      <p>
-        I'm a data engineer with strong data architecture expertise, specializing in designing and
-        building scalable cloud-based data workflows. At Deloitte, I focus on developing advanced
-        data pipelines and architecting end-to-end ingestion, data masking, and reconciliation
-        strategies to ensure data integrity, security, and reliability for enterprise clients.
-      </p>
-    </>
-  );
-  const five = (
-    <a className="email-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-      Check out my resume!
-    </a>
-  );
-
-  const items = [one, two, three, four, five];
-
-  return (
-    <StyledHeroSection>
-      {prefersReducedMotion ? (
-        <>
-          {items.map((item, i) => (
-            <div key={i}>{item}</div>
-          ))}
-        </>
-      ) : (
-        <TransitionGroup component={null}>
-          {isMounted &&
-            items.map((item, i) => (
-              <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
-                <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
-              </CSSTransition>
-            ))}
-        </TransitionGroup>
-      )}
-    </StyledHeroSection>
-  );
-};
+      <aside className="system-card" aria-label="Current project scope">
+        <p className="card-label">Current project scope</p>
+        <ol className="pipeline">
+          <li>
+            <span>01</span>ETL and data movement
+          </li>
+          <li>
+            <span>02</span>Reporting and analytics
+          </li>
+          <li>
+            <span>03</span>Infrastructure and controls
+          </li>
+          <li>
+            <span>04</span>Monitoring and delivery
+          </li>
+        </ol>
+        <div className="stack" aria-label="Core technologies">
+          <span>AWS</span>
+          <span>Python</span>
+          <span>SQL</span>
+          <span>PySpark</span>
+          <span>Airflow</span>
+        </div>
+      </aside>
+    </div>
+  </HeroSection>
+);
 
 export default Hero;

@@ -1,86 +1,174 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
+const https = require('https');
 const path = require('path');
-const _ = require('lodash');
 
-exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions;
-  const postTemplate = path.resolve(`src/templates/post.js`);
-  const tagTemplate = path.resolve('src/templates/tag.js');
+const BLOG_FEED = process.env.HASHNODE_FEED_URL || 'https://kish.hashnode.dev/rss.xml';
+const VERIFIED_POSTS = [
+  {
+    title: 'Protecting PII data on the cloud: Deep Dive into Encryption',
+    excerpt:
+      'A practical AWS-focused guide to protecting sensitive data with encryption at rest and in transit.',
+    url: 'https://kish.hashnode.dev/protecting-pii-data-on-the-cloud-deep-dive-into-encryption',
+    publishedAt: '2025-09-02T00:00:00.000Z',
+    readingTime: 19,
+    tags: ['AWS', 'Encryption', 'Data security'],
+  },
+  {
+    title: 'Essential Cloud Techniques for Protecting PII Data (Part 1)',
+    excerpt:
+      'A layered look at encryption, masking, privacy transformations and governance for cloud data platforms.',
+    url: 'https://kish.hashnode.dev/essential-cloud-techniques-for-protecting-pii-data-part-1',
+    publishedAt: '2025-07-16T00:00:00.000Z',
+    readingTime: 11,
+    tags: ['PII', 'Cloud security', 'Data engineering'],
+  },
+  {
+    title: 'My Experience of Learning HTML, CSS, and JavaScript',
+    excerpt:
+      'Reflections on learning front-end fundamentals through interactive lessons and small practical projects.',
+    url: 'https://kish.hashnode.dev/my-experience-of-learning-html-css-and-javascript',
+    publishedAt: '2023-06-01T00:00:00.000Z',
+    readingTime: 2,
+    tags: ['HTML', 'CSS', 'JavaScript'],
+  },
+];
 
-  const result = await graphql(`
-    {
-      postsRemark: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/posts/" } }
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
-        edges {
-          node {
-            frontmatter {
-              slug
-            }
+const requestText = (url, redirects = 0) =>
+  new Promise((resolve, reject) => {
+    const request = https.get(
+      url,
+      {
+        timeout: 8000,
+        headers: {
+          Accept: 'application/rss+xml, application/xml;q=0.9, text/xml;q=0.8',
+          'User-Agent': 'KishanRekhadiaPortfolio/1.0 (+https://kish7.netlify.app)',
+        },
+      },
+      response => {
+        if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
+          response.resume();
+          if (redirects >= 3) {
+            reject(new Error('Too many redirects while loading the Hashnode feed.'));
+            return;
           }
+          resolve(requestText(new URL(response.headers.location, url).toString(), redirects + 1));
+          return;
         }
-      }
-      tagsGroup: allMarkdownRemark(limit: 2000) {
-        group(field: frontmatter___tags) {
-          fieldValue
+
+        if (response.statusCode !== 200) {
+          response.resume();
+          reject(new Error(`Hashnode feed returned HTTP ${response.statusCode}.`));
+          return;
         }
-      }
-    }
-  `);
 
-  // Handle errors
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`);
-    return;
-  }
+        response.setEncoding('utf8');
+        let body = '';
+        response.on('data', chunk => {
+          body += chunk;
+        });
+        response.on('end', () => resolve(body));
+      },
+    );
 
-  // Create post detail pages
-  const posts = result.data.postsRemark.edges;
-
-  posts.forEach(({ node }) => {
-    createPage({
-      path: node.frontmatter.slug,
-      component: postTemplate,
-      context: {},
-    });
+    request.on('timeout', () => request.destroy(new Error('Hashnode feed request timed out.')));
+    request.on('error', reject);
   });
 
-  // Extract tag data from query
-  const tags = result.data.tagsGroup.group;
-  // Make tag pages
-  tags.forEach(tag => {
-    createPage({
-      path: `/pensieve/tags/${_.kebabCase(tag.fieldValue)}/`,
-      component: tagTemplate,
-      context: {
-        tag: tag.fieldValue,
+const decodeEntities = value =>
+  value
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '\u0022')
+    .replace(/&#39;|&apos;/g, String.fromCharCode(39));
+
+const readTag = (source, tag) => {
+  const match = source.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`, 'i'));
+  return match ? decodeEntities(match[1]).trim() : '';
+};
+
+const plainText = value =>
+  decodeEntities(value)
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const parseFeed = xml =>
+  Array.from(xml.matchAll(/<item>([\s\S]*?)<\/item>/gi))
+    .map(match => match[1])
+    .map(item => {
+      const fullContent = readTag(item, 'content:encoded');
+      const description = plainText(readTag(item, 'description'));
+      const words = plainText(fullContent || description)
+        .split(/\s+/)
+        .filter(Boolean).length;
+      const tags = Array.from(item.matchAll(/<category(?:\s[^>]*)?>([\s\S]*?)<\/category>/gi))
+        .map(category => plainText(category[1]))
+        .filter(Boolean);
+
+      return {
+        title: plainText(readTag(item, 'title')),
+        excerpt: description,
+        url: plainText(readTag(item, 'link')),
+        publishedAt: plainText(readTag(item, 'pubDate')),
+        readingTime: Math.max(1, Math.ceil(words / 225)),
+        tags,
+      };
+    })
+    .filter(post => post.title && post.url && post.publishedAt)
+    .slice(0, 3);
+
+exports.createSchemaCustomization = ({ actions }) => {
+  actions.createTypes(`
+    type HashnodePost implements Node @dontInfer {
+      title: String!
+      excerpt: String!
+      url: String!
+      publishedAt: Date! @dateformat
+      readingTime: Int!
+      tags: [String!]!
+    }
+  `);
+};
+
+exports.sourceNodes = async ({ actions, createContentDigest, createNodeId, reporter }) => {
+  let posts = VERIFIED_POSTS;
+
+  try {
+    const feedPosts = parseFeed(await requestText(BLOG_FEED));
+    posts = feedPosts.length ? feedPosts : VERIFIED_POSTS;
+    reporter.info(`Loaded ${posts.length} article${posts.length === 1 ? '' : 's'} from Hashnode.`);
+  } catch (error) {
+    reporter.warn(
+      `Hashnode RSS was unavailable; using the verified article fallback. ${error.message}`,
+    );
+  }
+
+  posts.forEach(post => {
+    actions.createNode({
+      ...post,
+      id: createNodeId(`hashnode-post-${post.url}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: 'HashnodePost',
+        contentDigest: createContentDigest(post),
       },
     });
   });
 };
 
-// https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig
+exports.onCreatePage = ({ page, actions }) => {
+  if (/^\/(archive|pensieve)(\/|$)/.test(page.path)) {
+    actions.deletePage(page);
+  }
+};
+
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-  // https://www.gatsbyjs.org/docs/debugging-html-builds/#fixing-third-party-modules
   if (stage === 'build-html' || stage === 'develop-html') {
     actions.setWebpackConfig({
       module: {
         rules: [
-          {
-            test: /scrollreveal/,
-            use: loaders.null(),
-          },
-          {
-            test: /animejs/,
-            use: loaders.null(),
-          },
           {
             test: /miniraf/,
             use: loaders.null(),
