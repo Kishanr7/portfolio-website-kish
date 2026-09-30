@@ -40,8 +40,8 @@ module.exports = {
   ],
 
   colors: {
-    green: '#9be8c2',
-    navy: '#07120f',
-    darkNavy: '#040a08',
+    green: '#5368c8',
+    navy: '#f7f6f2',
+    darkNavy: '#f7f6f2',
   },
 };

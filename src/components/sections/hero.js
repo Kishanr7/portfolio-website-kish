@@ -54,7 +54,7 @@ const HeroSection = styled.section`
     overflow: hidden;
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-lg);
-    background: linear-gradient(145deg, rgba(13, 31, 25, 0.94), rgba(7, 18, 15, 0.86));
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(238, 241, 248, 0.92));
     box-shadow: var(--shadow);
   }
 
@@ -64,7 +64,7 @@ const HeroSection = styled.section`
     bottom: -90px;
     width: 220px;
     height: 220px;
-    border: 1px solid rgba(155, 232, 194, 0.18);
+    border: 1px solid rgba(83, 104, 200, 0.15);
     border-radius: 50%;
     content: '';
   }
@@ -119,7 +119,7 @@ const HeroSection = styled.section`
   .stack span {
     padding: 6px 9px;
     border-radius: 999px;
-    background: rgba(155, 232, 194, 0.08);
+    background: rgba(83, 104, 200, 0.08);
     color: var(--sage-300);
     font-family: var(--font-mono);
     font-size: 10px;

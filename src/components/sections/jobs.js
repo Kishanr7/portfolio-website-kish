@@ -61,7 +61,7 @@ const ExperienceSection = styled.section`
     padding: clamp(28px, 4vw, 46px);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    background: rgba(10, 24, 20, 0.58);
+    background: rgba(255, 255, 255, 0.82);
   }
 
   .role-meta {

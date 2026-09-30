@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body.menu-open { overflow: hidden; }
-  ::selection { background: var(--mint-300); color: var(--ink-950); }
+  ::selection { background: var(--mint-300); color: #fff; }
   :focus-visible { outline: 3px solid var(--amber-300); outline-offset: 4px; }
   a { color: inherit; text-decoration: none; }
   button, a { -webkit-tap-highlight-color: transparent; }
@@ -76,20 +76,20 @@ const GlobalStyle = createGlobalStyle`
     border: 1px solid var(--mint-300);
     border-radius: 999px;
     background: var(--mint-300);
-    color: var(--ink-950);
+    color: #fff;
     font-family: var(--font-mono);
     font-size: 13px;
     line-height: 1;
     transition: transform var(--transition), background var(--transition), color var(--transition);
   }
-  .button:hover { transform: translateY(-2px); background: var(--cream-50); }
+  .button:hover { transform: translateY(-2px); background: var(--ink-950); }
   .button.secondary { background: transparent; color: var(--cream-100); }
-  .button.secondary:hover { background: rgba(155, 232, 194, 0.08); color: var(--mint-300); }
+  .button.secondary:hover { background: rgba(83, 104, 200, 0.08); color: var(--mint-400); }
 
   .text-link {
     color: var(--cream-100);
     text-decoration: underline;
-    text-decoration-color: rgba(155, 232, 194, 0.45);
+    text-decoration-color: rgba(83, 104, 200, 0.4);
     text-underline-offset: 5px;
     transition: color var(--transition), text-decoration-color var(--transition);
   }
@@ -102,8 +102,8 @@ const GlobalStyle = createGlobalStyle`
     z-index: 100;
     padding: 10px 14px;
     border-radius: 6px;
-    background: var(--cream-50);
-    color: var(--ink-950);
+    background: var(--ink-950);
+    color: #fff;
     transform: translateY(-160%);
   }
   .skip-to-content:focus { transform: translateY(0); }

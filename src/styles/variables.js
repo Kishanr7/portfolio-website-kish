@@ -2,21 +2,21 @@ import { css } from 'styled-components';
 
 const variables = css`
   :root {
-    --ink-950: #040a08;
-    --ink-900: #07120f;
-    --ink-850: #0a1814;
-    --ink-800: #0d1f19;
-    --ink-700: #173228;
-    --cream-50: #faf8f2;
-    --cream-100: #f1ede3;
-    --sage-300: #b8c8be;
-    --sage-400: #95a99e;
-    --mint-300: #9be8c2;
-    --mint-400: #72d8aa;
-    --amber-300: #f4c46f;
-    --border: rgba(184, 200, 190, 0.16);
-    --border-strong: rgba(155, 232, 194, 0.34);
-    --shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+    --ink-950: #162033;
+    --ink-900: #f7f6f2;
+    --ink-850: #ffffff;
+    --ink-800: #eef1f8;
+    --ink-700: #d6dce8;
+    --cream-50: #162033;
+    --cream-100: #29364d;
+    --sage-300: #465269;
+    --sage-400: #697386;
+    --mint-300: #5368c8;
+    --mint-400: #4054b2;
+    --amber-300: #bd6d4e;
+    --border: rgba(45, 58, 88, 0.12);
+    --border-strong: rgba(83, 104, 200, 0.28);
+    --shadow: 0 24px 64px rgba(37, 48, 80, 0.11);
     --font-sans: 'Calibre', 'Inter', 'Segoe UI', sans-serif;
     --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     --container: 1180px;

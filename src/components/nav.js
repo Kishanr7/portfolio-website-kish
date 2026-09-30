@@ -8,7 +8,7 @@ const Header = styled.header`
   z-index: 30;
   height: var(--header-height);
   border-bottom: 1px solid var(--border);
-  background: rgba(7, 18, 15, 0.88);
+  background: rgba(247, 246, 242, 0.9);
   backdrop-filter: blur(18px);
 
   .inner {
@@ -33,7 +33,7 @@ const Header = styled.header`
 
   .brand:hover {
     background: var(--mint-300);
-    color: var(--ink-950);
+    color: #fff;
   }
 
   .desktop-links {
@@ -129,7 +129,7 @@ const Header = styled.header`
       padding: 32px 20px 38px;
       border: 0;
       border-bottom: 1px solid var(--border-strong);
-      background: var(--ink-850);
+      background: rgba(255, 255, 255, 0.98);
       color: inherit;
       box-shadow: var(--shadow);
       visibility: ${props => (props.open ? 'visible' : 'hidden')};

@@ -6,8 +6,8 @@ import { GlobalStyle, theme } from '@styles';
 
 const Page = styled.div`
   min-height: 100vh;
-  background: radial-gradient(circle at 82% 8%, rgba(155, 232, 194, 0.08), transparent 28rem),
-    var(--ink-900);
+  background: radial-gradient(circle at 83% 5%, rgba(83, 104, 200, 0.1), transparent 31rem),
+    radial-gradient(circle at 8% 28%, rgba(189, 109, 78, 0.06), transparent 25rem), var(--ink-900);
 `;
 
 const Layout = ({ children }) => (

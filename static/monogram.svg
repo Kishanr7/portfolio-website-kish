@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
   <title id="title">Kishan Rekhadia monogram</title>
-  <rect width="512" height="512" rx="112" fill="#07120f"/>
-  <circle cx="256" cy="256" r="184" fill="none" stroke="#9be8c2" stroke-width="12"/>
-  <path d="M163 151v210h38v-88l76 88h51l-96-110 90-100h-49l-72 83v-83h-38Z" fill="#f1ede3"/>
-  <path d="M322 151h28v210h-28z" fill="#f4c46f"/>
+  <rect width="512" height="512" rx="112" fill="#162033"/>
+  <circle cx="256" cy="256" r="184" fill="none" stroke="#8391dc" stroke-width="12"/>
+  <path d="M163 151v210h38v-88l76 88h51l-96-110 90-100h-49l-72 83v-83h-38Z" fill="#ffffff"/>
+  <path d="M322 151h28v210h-28z" fill="#d58b6e"/>
 </svg>

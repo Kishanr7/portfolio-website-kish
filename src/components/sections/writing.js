@@ -29,7 +29,7 @@ const WritingSection = styled.section`
     padding: 28px;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    background: rgba(13, 31, 25, 0.62);
+    background: rgba(255, 255, 255, 0.84);
     transition: border-color var(--transition), transform var(--transition);
   }
 

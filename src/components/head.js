@@ -56,7 +56,7 @@ const Head = ({ title, description, image }) => {
       <link rel="canonical" href={seo.url} />
       <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
       <link rel="icon" href="/monogram.svg" type="image/svg+xml" />
-      <meta name="theme-color" content="#07120f" />
+      <meta name="theme-color" content="#f7f6f2" />
       <meta name="description" content={seo.description} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />

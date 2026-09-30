@@ -50,7 +50,7 @@ const SkillsSection = styled.section`
   article {
     padding: 24px;
     border-top: 1px solid var(--border-strong);
-    background: rgba(13, 31, 25, 0.4);
+    background: rgba(255, 255, 255, 0.72);
   }
 
   h3 {
