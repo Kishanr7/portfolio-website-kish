@@ -152,8 +152,9 @@ const Hero = () => (
         <p className="eyebrow">Kishan Rekhadia · Senior Consultant, Data Engineering</p>
         <h1 id="hero-title">I build reliable data platforms on AWS.</h1>
         <p className="intro">
-          I’m a Senior Consultant at Deloitte with 5+ years in data engineering. I work across ETL,
-          analytics and cloud infrastructure, and I stay hands-on with Python, SQL and PySpark.
+          I’m a Senior Consultant at Deloitte with 5+ years in data engineering. Most of my work
+          starts with a difficult migration or reliability problem and ends with a platform the team
+          can run with confidence. I stay hands-on with Python, SQL and PySpark.
         </p>
         <div className="actions">
           <a className="button" href="#work">

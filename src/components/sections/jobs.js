@@ -12,6 +12,7 @@ const roles = [
       'Set technical direction and coordinate delivery across the project’s data and infrastructure workstreams.',
       'Designed an event-driven AWS platform spanning on-premises ingestion, bronze and silver processing, analytics base tables, model-refresh triggers and dashboards, with auditing and monitoring throughout.',
       'Re-engineered AWS Glue and PySpark workloads to reduce measured runtime by 70%.',
+      'Set daily priorities, cleared delivery blockers and helped the team complete 30 use cases within the agreed timeline.',
     ],
   },
   {
@@ -25,6 +26,7 @@ const roles = [
       'Designed full-load and incremental pipelines that moved 10+ TB from Oracle and 30 TB from a SAS warehouse to Amazon S3 in Parquet format, reducing the storage bill by 65%.',
       'Built deterministic PII-masking pipelines in Glue and PySpark, preserving referential integrity and enforcing role-based access through Lake Formation.',
       'Developed metadata-driven reconciliation across Oracle, S3, RDS and Redshift, using Aurora PostgreSQL rules and consolidated validation outputs.',
+      'Orchestrated ingestion, masking and reconciliation with Step Functions, Lambda, Glue and SNS, including dependency handling and automated alerts.',
     ],
   },
   {
@@ -36,6 +38,7 @@ const roles = [
     bullets: [
       'Built Python ingestion and transformation services across EC2, Lambda and S3, with batch orchestration in Amazon MWAA and Airflow.',
       'Developed production Airflow DAGs with deployment support, data-quality checks and failure alerting.',
+      'Automated same-account and cross-account QuickSight asset migration with reusable Python and Boto3 tooling.',
       'Built Python and SQL reconciliation tooling for schema and row-level validation, achieving a measured 90x improvement over the previous process.',
     ],
   },
@@ -128,7 +131,10 @@ const Jobs = () => (
       <div className="section-heading">
         <p className="eyebrow">Experience</p>
         <h2 id="experience-title">From building pipelines to leading delivery.</h2>
-        <p>A quick view of my progression across Deloitte and Infosys.</p>
+        <p>
+          I’ve worked across migration, governance and analytics, but the pattern is consistent:
+          understand the source, design a practical path forward and stay close to production.
+        </p>
       </div>
       <div className="timeline">
         {roles.map(role => (

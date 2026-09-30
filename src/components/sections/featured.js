@@ -6,21 +6,21 @@ const caseStudies = [
     title: 'Large-scale AWS migration',
     outcome: '65% lower storage bill',
     summary:
-      'Moved 10+ TB from Oracle and 30 TB from SAS into S3 as Parquet. I designed the full and incremental loads, masking controls and reconciliation checks.',
+      'Moved 10+ TB from Oracle and 30 TB from SAS into S3 as Parquet. The work also had to preserve keys, protect PII and prove that source and target matched.',
     stack: ['AWS Glue', 'PySpark', 'DMS', 'S3', 'Lake Formation'],
   },
   {
     title: 'Faster data processing',
     outcome: '70% shorter Glue runtime',
     summary:
-      'Reworked Glue and PySpark jobs to remove bottlenecks, then connected the pipeline to an event-driven workflow with monitoring and alerts.',
+      'Profiled the slow stages, reworked the Glue and PySpark jobs, then connected the pipeline to an event-driven workflow with monitoring and alerts.',
     stack: ['Glue', 'PySpark', 'Lambda', 'Step Functions', 'SNS'],
   },
   {
     title: 'Automated reconciliation',
     outcome: '90x faster validation',
     summary:
-      'Built reusable Python and SQL checks for schema and row-level validation, replacing a slow manual comparison process.',
+      'Schema and row checks were taking too long, so I built reusable Python and SQL comparisons with clear exception outputs for the team to review.',
     stack: ['Python', 'SQL', 'Airflow', 'Redshift', 'Boto3'],
   },
 ];
