@@ -8,7 +8,7 @@ const ContactSection = styled.section`
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 38px;
     align-items: end;
-    padding: clamp(32px, 7vw, 72px);
+    padding: clamp(28px, 5vw, 52px);
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-lg);
     background: linear-gradient(135deg, var(--ink-800), var(--ink-850));
@@ -57,10 +57,10 @@ const Contact = () => (
       <div className="card">
         <div>
           <p className="eyebrow">Contact</p>
-          <h2 id="contact-title">Building a data platform that needs to work in the real world?</h2>
+          <h2 id="contact-title">Let’s talk about your data engineering role.</h2>
           <p className="copy">
-            I’m open to conversations with engineering leaders, recruiters and collaborators about
-            senior data engineering and suitable lead data engineering opportunities.
+            I’m open to senior and lead data engineering opportunities where I can stay close to the
+            technical work and help a team deliver well.
           </p>
         </div>
         <div className="actions">
@@ -71,8 +71,7 @@ const Contact = () => (
             className="linkedin"
             href="https://www.linkedin.com/in/kishan-rekhadia-757b69126/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             Connect on LinkedIn ↗
           </a>
         </div>

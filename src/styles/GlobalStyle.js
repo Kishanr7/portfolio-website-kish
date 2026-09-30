@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .section-shell {
-    padding: clamp(76px, 10vw, 132px) 0;
+    padding: clamp(56px, 7vw, 88px) 0;
     border-top: 1px solid var(--border);
   }
 
@@ -59,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
     text-transform: uppercase;
   }
 
-  .section-heading { max-width: 800px; margin-bottom: 44px; }
+  .section-heading { max-width: 760px; margin-bottom: 32px; }
   .section-heading h2 {
     margin-bottom: 14px;
     font-size: clamp(36px, 5vw, 58px);

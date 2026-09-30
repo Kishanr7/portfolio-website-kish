@@ -12,10 +12,6 @@ const roles = [
       'Set technical direction and coordinate delivery across the project’s data and infrastructure workstreams.',
       'Designed an event-driven AWS platform spanning on-premises ingestion, bronze and silver processing, analytics base tables, model-refresh triggers and dashboards, with auditing and monitoring throughout.',
       'Re-engineered AWS Glue and PySpark workloads to reduce measured runtime by 70%.',
-      'Designed archival and manual data-capture frameworks for retention needs and source-system gaps.',
-      'Established daily priorities and blocker reviews that helped the team deliver 30 use cases within the agreed timeline.',
-      'Contributed technical RFP responses and on-site infrastructure assessments for cloud migration.',
-      'Received a Deloitte President Bonus in 2026.',
     ],
   },
   {
@@ -29,8 +25,6 @@ const roles = [
       'Designed full-load and incremental pipelines that moved 10+ TB from Oracle and 30 TB from a SAS warehouse to Amazon S3 in Parquet format, reducing the storage bill by 65%.',
       'Built deterministic PII-masking pipelines in Glue and PySpark, preserving referential integrity and enforcing role-based access through Lake Formation.',
       'Developed metadata-driven reconciliation across Oracle, S3, RDS and Redshift, using Aurora PostgreSQL rules and consolidated validation outputs.',
-      'Orchestrated ingestion, masking and reconciliation with Step Functions, Lambda, Glue and SNS, including dependency handling and automated alerts.',
-      'Supported risk, finance and data-mart modernisation through architecture assessment, modelling and tool evaluation.',
     ],
   },
   {
@@ -42,7 +36,6 @@ const roles = [
     bullets: [
       'Built Python ingestion and transformation services across EC2, Lambda and S3, with batch orchestration in Amazon MWAA and Airflow.',
       'Developed production Airflow DAGs with deployment support, data-quality checks and failure alerting.',
-      'Automated same-account and cross-account QuickSight asset migration using reusable Python and Boto3 tooling.',
       'Built Python and SQL reconciliation tooling for schema and row-level validation, achieving a measured 90x improvement over the previous process.',
     ],
   },
@@ -59,7 +52,7 @@ const ExperienceSection = styled.section`
     display: grid;
     grid-template-columns: 245px minmax(0, 1fr);
     gap: clamp(28px, 5vw, 72px);
-    padding: clamp(28px, 4vw, 46px);
+    padding: clamp(24px, 3vw, 34px);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: var(--surface-card);
@@ -134,11 +127,8 @@ const Jobs = () => (
     <div className="container">
       <div className="section-heading">
         <p className="eyebrow">Experience</p>
-        <h2 id="experience-title">Hands-on engineering, growing scope.</h2>
-        <p>
-          Official titles and dates are retained below. Project leadership describes delivery scope,
-          not formal line-management authority.
-        </p>
+        <h2 id="experience-title">From building pipelines to leading delivery.</h2>
+        <p>A quick view of my progression across Deloitte and Infosys.</p>
       </div>
       <div className="timeline">
         {roles.map(role => (

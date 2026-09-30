@@ -2,26 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const groups = [
-  { title: 'Languages & processing', items: ['Python', 'SQL', 'PySpark', 'Apache Spark'] },
+  { title: 'Build', items: ['Python', 'SQL', 'PySpark', 'Apache Spark'] },
   {
-    title: 'AWS & cloud services',
-    items: ['Glue', 'Lambda', 'Step Functions', 'DMS', 'SNS', 'Lake Formation'],
+    title: 'AWS',
+    items: ['Glue', 'Lambda', 'Step Functions', 'DMS', 'S3', 'Redshift'],
   },
   {
-    title: 'Data platforms & storage',
-    items: ['Amazon S3', 'Redshift', 'RDS', 'Aurora PostgreSQL', 'Parquet'],
-  },
-  {
-    title: 'Orchestration & automation',
+    title: 'Run',
     items: ['Airflow', 'Amazon MWAA', 'Boto3', 'CI/CD', 'Docker'],
   },
   {
-    title: 'Governance & quality',
-    items: ['PII masking', 'RBAC', 'Reconciliation', 'Data quality', 'Monitoring'],
-  },
-  {
-    title: 'Delivery & architecture',
-    items: ['Data modelling', 'Cloud migration', 'Technical RFPs', 'Infrastructure assessment'],
+    title: 'Trust',
+    items: ['PII masking', 'Lake Formation', 'Reconciliation', 'Data quality', 'Monitoring'],
   },
 ];
 
@@ -94,9 +86,9 @@ const Skills = () => (
   <SkillsSection id="skills" className="section-shell" aria-labelledby="skills-title">
     <div className="container layout">
       <div className="intro">
-        <p className="eyebrow">Working toolkit</p>
-        <h2 id="skills-title">Technology in service of the system.</h2>
-        <p>Grouped by how I use it—not by badge count or a self-scored progress bar.</p>
+        <p className="eyebrow">Skills</p>
+        <h2 id="skills-title">Tools I use regularly.</h2>
+        <p>A compact list, with the project context covered above.</p>
       </div>
       <div className="groups">
         {groups.map(group => (
