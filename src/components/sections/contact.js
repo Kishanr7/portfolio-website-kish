@@ -9,10 +9,10 @@ const ContactSection = styled.section`
     gap: 38px;
     align-items: end;
     padding: clamp(28px, 5vw, 52px);
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--ink-800), var(--ink-850));
-    box-shadow: var(--shadow);
+    border-top: 6px solid var(--contrast-accent);
+    border-radius: 8px;
+    background: var(--contrast-bg);
+    color: var(--contrast-text);
   }
 
   h2 {
@@ -20,10 +20,11 @@ const ContactSection = styled.section`
     margin-bottom: 18px;
     font-size: clamp(40px, 6vw, 68px);
     letter-spacing: -0.035em;
+    color: var(--contrast-text);
   }
   .copy {
     max-width: 720px;
-    color: var(--sage-300);
+    color: var(--contrast-muted);
   }
   .actions {
     display: grid;
@@ -31,13 +32,17 @@ const ContactSection = styled.section`
     min-width: 220px;
   }
   .linkedin {
-    color: var(--cream-100);
-    font-family: var(--font-mono);
-    font-size: 11px;
+    color: var(--contrast-text);
+    font-size: 13px;
     text-align: center;
   }
   .linkedin:hover {
-    color: var(--mint-300);
+    color: var(--contrast-accent);
+  }
+  .button {
+    border-color: var(--contrast-accent);
+    background: var(--contrast-accent);
+    color: #172033;
   }
 
   @media (max-width: 800px) {

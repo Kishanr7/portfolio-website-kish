@@ -22,8 +22,8 @@ const GlobalStyle = createGlobalStyle`
     background: var(--ink-900);
     color: var(--sage-300);
     font-family: var(--font-sans);
-    font-size: 19px;
-    line-height: 1.55;
+    font-size: 18px;
+    line-height: 1.58;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -37,7 +37,10 @@ const GlobalStyle = createGlobalStyle`
   h1, h2, h3, p { margin-top: 0; }
   h1, h2, h3 { color: var(--cream-50); line-height: 1.04; }
   p:last-child { margin-bottom: 0; }
-  main { overflow: hidden; }
+  main {
+    overflow: hidden;
+    scroll-margin-top: var(--header-height);
+  }
   section { scroll-margin-top: calc(var(--header-height) + 24px); }
 
   .container {
@@ -45,25 +48,32 @@ const GlobalStyle = createGlobalStyle`
     margin-inline: auto;
   }
 
-  .section-shell {
-    padding: clamp(56px, 7vw, 88px) 0;
-    border-top: 1px solid var(--border);
-  }
+  .section-shell { padding: clamp(48px, 5.5vw, 74px) 0; }
 
   .eyebrow {
-    margin-bottom: 18px;
-    color: var(--mint-300);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.13em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: var(--amber-300);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    width: 28px;
+    height: 2px;
+    background: currentColor;
+    content: '';
   }
 
   .section-heading { max-width: 760px; margin-bottom: 32px; }
   .section-heading h2 {
     margin-bottom: 14px;
-    font-size: clamp(36px, 5vw, 58px);
-    letter-spacing: -0.025em;
+    font-size: clamp(34px, 4.2vw, 52px);
+    letter-spacing: -0.02em;
   }
   .section-heading p { max-width: 670px; color: var(--sage-400); }
 
@@ -75,7 +85,7 @@ const GlobalStyle = createGlobalStyle`
     gap: 9px;
     padding: 11px 20px 9px;
     border: 1px solid var(--mint-300);
-    border-radius: 999px;
+    border-radius: 7px;
     background: var(--mint-300);
     color: var(--button-text);
     font-family: var(--font-mono);
@@ -83,7 +93,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1;
     transition: transform var(--transition), background var(--transition), color var(--transition);
   }
-  .button:hover { transform: translateY(-2px); background: var(--ink-950); }
+  .button:hover { transform: translateY(-2px); background: var(--mint-400); }
   .button.secondary { background: transparent; color: var(--cream-100); }
   .button.secondary:hover { background: var(--accent-wash); color: var(--mint-400); }
 

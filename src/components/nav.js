@@ -19,21 +19,17 @@ const Header = styled.header`
   }
 
   .brand {
-    display: inline-grid;
-    width: 42px;
-    height: 42px;
-    place-items: center;
-    border: 1px solid var(--border-strong);
-    border-radius: 50%;
-    color: var(--mint-300);
-    font-family: var(--font-mono);
-    font-size: 13px;
+    padding: 7px 1px 5px;
+    border-bottom: 3px solid var(--amber-300);
+    color: var(--cream-50);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     transition: background var(--transition), color var(--transition);
   }
 
   .brand:hover {
-    background: var(--mint-300);
-    color: var(--button-text);
+    color: var(--amber-300);
   }
 
   .desktop-links {
@@ -47,8 +43,7 @@ const Header = styled.header`
 
   .desktop-links a {
     color: var(--sage-300);
-    font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 14px;
     transition: color var(--transition);
   }
 
@@ -73,7 +68,7 @@ const Header = styled.header`
     height: 44px;
     place-items: center;
     border: 1px solid var(--border);
-    border-radius: 50%;
+    border-radius: 7px;
     background: var(--ink-850);
     color: var(--cream-50);
     cursor: pointer;

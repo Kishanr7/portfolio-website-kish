@@ -28,58 +28,71 @@ const caseStudies = [
 const WorkSection = styled.section`
   .cases {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
   }
 
   article {
-    display: flex;
-    min-height: 330px;
-    flex-direction: column;
-    padding: 28px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--ink-850);
+    display: grid;
+    grid-template-columns: 54px minmax(220px, 0.75fr) minmax(0, 1.25fr);
+    gap: clamp(20px, 4vw, 54px);
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .case-number {
+    color: var(--amber-300);
+    font-family: var(--font-mono);
+    font-size: 12px;
   }
 
   h3 {
-    margin-bottom: 14px;
-    font-size: 28px;
+    margin-bottom: 12px;
+    font-size: 27px;
     letter-spacing: -0.02em;
   }
   .outcome {
-    margin-bottom: 20px;
+    margin: 0;
     color: var(--amber-300);
     font-family: var(--font-mono);
     font-size: 12px;
   }
 
   .summary {
-    color: var(--sage-400);
-    font-size: 16px;
+    margin-bottom: 18px;
+    color: var(--sage-300);
+    font-size: 17px;
   }
 
   .stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-top: auto;
-    padding-top: 22px;
+    margin: 0;
+    color: var(--sage-400);
+    font-size: 14px;
   }
   .stack span {
-    padding: 5px 8px;
-    border-radius: 999px;
-    background: var(--accent-wash);
-    color: var(--sage-300);
-    font-family: var(--font-mono);
-    font-size: 9px;
+    font-weight: 600;
+  }
+  .stack span:not(:last-child)::after {
+    margin-right: 7px;
+    color: var(--amber-300);
+    content: ', ';
   }
   @media (max-width: 900px) {
-    .cases {
-      grid-template-columns: 1fr;
-    }
     article {
-      min-height: auto;
+      grid-template-columns: 42px 1fr;
+    }
+    .case-copy {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 560px) {
+    article {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .case-copy {
+      grid-column: 1;
     }
   }
 `;
@@ -93,15 +106,22 @@ const Featured = () => (
         <p>Short, sanitized examples from production work.</p>
       </div>
       <div className="cases">
-        {caseStudies.map(item => (
+        {caseStudies.map((item, index) => (
           <article key={item.title}>
-            <h3>{item.title}</h3>
-            <p className="outcome">{item.outcome}</p>
-            <p className="summary">{item.summary}</p>
-            <div className="stack" aria-label="Technologies used">
-              {item.stack.map(tech => (
-                <span key={tech}>{tech}</span>
-              ))}
+            <span className="case-number" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3>{item.title}</h3>
+              <p className="outcome">{item.outcome}</p>
+            </div>
+            <div className="case-copy">
+              <p className="summary">{item.summary}</p>
+              <p className="stack" aria-label="Technologies used">
+                {item.stack.map(tech => (
+                  <span key={tech}>{tech}</span>
+                ))}
+              </p>
             </div>
           </article>
         ))}

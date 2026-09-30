@@ -48,17 +48,16 @@ const ExperienceSection = styled.section`
   .timeline {
     position: relative;
     display: grid;
-    gap: 18px;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
   }
 
   article {
     display: grid;
     grid-template-columns: 245px minmax(0, 1fr);
     gap: clamp(28px, 5vw, 72px);
-    padding: clamp(24px, 3vw, 34px);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    background: var(--surface-card);
+    padding: clamp(30px, 4vw, 46px) 0;
+    border-top: 1px solid var(--border);
   }
 
   .role-meta {
@@ -81,8 +80,8 @@ const ExperienceSection = styled.section`
 
   .company {
     color: var(--mint-300);
-    font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 600;
   }
 
   .summary {
@@ -102,15 +101,18 @@ const ExperienceSection = styled.section`
 
   li {
     position: relative;
-    padding-left: 21px;
+    padding-left: 20px;
     color: var(--sage-400);
     font-size: 16px;
   }
   li::before {
     position: absolute;
     left: 0;
-    color: var(--mint-300);
-    content: '↳';
+    top: 0.65em;
+    width: 7px;
+    height: 7px;
+    background: var(--amber-300);
+    content: '';
   }
 
   @media (max-width: 760px) {

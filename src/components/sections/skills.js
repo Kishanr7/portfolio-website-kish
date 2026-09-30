@@ -8,11 +8,11 @@ const groups = [
     items: ['Glue', 'Lambda', 'Step Functions', 'DMS', 'S3', 'Redshift'],
   },
   {
-    title: 'Run',
+    title: 'Deployments',
     items: ['Airflow', 'Amazon MWAA', 'Boto3', 'CI/CD', 'Docker'],
   },
   {
-    title: 'Trust',
+    title: 'Governance',
     items: ['PII masking', 'Lake Formation', 'Reconciliation', 'Data quality', 'Monitoring'],
   },
 ];
@@ -36,20 +36,21 @@ const SkillsSection = styled.section`
   .groups {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    gap: 0 34px;
+    border-bottom: 1px solid var(--border);
   }
 
   article {
-    padding: 24px;
-    border-top: 1px solid var(--border-strong);
-    background: var(--surface-card);
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
   }
 
   h3 {
     margin-bottom: 16px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 400;
+    color: var(--amber-300);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
   ul {

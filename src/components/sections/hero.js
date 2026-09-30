@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { email } from '@config';
 
 const HeroSection = styled.section`
-  padding: clamp(54px, 7vw, 84px) 0 44px;
+  padding: clamp(60px, 8vw, 102px) 0 34px;
 
   .grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
     gap: clamp(44px, 6vw, 76px);
     align-items: center;
   }
@@ -15,8 +15,8 @@ const HeroSection = styled.section`
   h1 {
     max-width: 780px;
     margin-bottom: 24px;
-    font-size: clamp(48px, 5.8vw, 76px);
-    letter-spacing: -0.045em;
+    font-size: clamp(46px, 5.4vw, 72px);
+    letter-spacing: -0.04em;
   }
 
   .intro {
@@ -42,12 +42,8 @@ const HeroSection = styled.section`
 
   .profile-card {
     position: relative;
-    padding: 28px;
-    overflow: hidden;
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-    background: linear-gradient(145deg, var(--surface-card-strong), var(--surface-soft));
-    box-shadow: var(--shadow);
+    padding: 8px 0 8px 28px;
+    border-left: 4px solid var(--amber-300);
   }
 
   .card-label {
@@ -94,9 +90,8 @@ const HeroSection = styled.section`
   }
 
   .metric {
-    padding: 20px 22px;
-    border-top: 1px solid var(--border-strong);
-    background: var(--surface-card);
+    padding: 20px 22px 18px 0;
+    border-top: 2px solid var(--cream-100);
   }
 
   .metric strong {
@@ -105,6 +100,15 @@ const HeroSection = styled.section`
     color: var(--mint-300);
     font-size: clamp(28px, 4vw, 42px);
     line-height: 1;
+  }
+
+  .metric:nth-child(even) strong {
+    color: var(--amber-300);
+  }
+
+  .metric + .metric {
+    padding-left: 22px;
+    border-left: 1px solid var(--border);
   }
 
   .metric span {
@@ -130,7 +134,7 @@ const HeroSection = styled.section`
 
   @media (max-width: 520px) {
     h1 {
-      font-size: clamp(46px, 15vw, 64px);
+      font-size: clamp(40px, 12vw, 52px);
     }
     .actions {
       align-items: stretch;
@@ -140,7 +144,11 @@ const HeroSection = styled.section`
       width: 100%;
     }
     .profile-card {
-      padding: 22px;
+      padding: 6px 0 6px 20px;
+    }
+    .metric + .metric {
+      padding-left: 0;
+      border-left: 0;
     }
   }
 `;

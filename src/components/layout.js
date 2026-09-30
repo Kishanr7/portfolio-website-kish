@@ -6,8 +6,7 @@ import { GlobalStyle, theme } from '@styles';
 
 const Page = styled.div`
   min-height: 100vh;
-  background: radial-gradient(circle at 83% 5%, var(--page-glow-accent), transparent 31rem),
-    radial-gradient(circle at 8% 28%, var(--page-glow-warm), transparent 25rem), var(--ink-900);
+  background: var(--ink-900);
 `;
 
 const Layout = ({ children }) => (
