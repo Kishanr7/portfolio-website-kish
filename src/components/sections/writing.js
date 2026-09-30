@@ -29,7 +29,7 @@ const WritingSection = styled.section`
     padding: 28px;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.84);
+    background: var(--surface-card);
     transition: border-color var(--transition), transform var(--transition);
   }
 
@@ -146,8 +146,7 @@ const Writing = () => {
             className="text-link"
             href="https://kish.hashnode.dev/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             All articles ↗
           </a>
         </div>
@@ -172,8 +171,7 @@ const Writing = () => {
                   href={post.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Read ${post.title}`}
-                >
+                  aria-label={`Read ${post.title}`}>
                   Read on Hashnode ↗
                 </a>
               </article>
@@ -189,8 +187,7 @@ const Writing = () => {
               className="text-link"
               href="https://kish.hashnode.dev/"
               target="_blank"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
               Visit Kishan’s blog ↗
             </a>
           </div>

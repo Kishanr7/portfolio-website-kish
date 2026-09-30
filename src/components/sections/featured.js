@@ -142,7 +142,7 @@ const WorkSection = styled.section`
   .stack span {
     padding: 5px 8px;
     border-radius: 999px;
-    background: rgba(83, 104, 200, 0.08);
+    background: var(--accent-wash);
     color: var(--sage-300);
     font-family: var(--font-mono);
     font-size: 9px;

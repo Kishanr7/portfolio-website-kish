@@ -15,6 +15,7 @@ const roles = [
       'Designed archival and manual data-capture frameworks for retention needs and source-system gaps.',
       'Established daily priorities and blocker reviews that helped the team deliver 30 use cases within the agreed timeline.',
       'Contributed technical RFP responses and on-site infrastructure assessments for cloud migration.',
+      'Received a Deloitte President Bonus in 2026.',
     ],
   },
   {
@@ -61,7 +62,7 @@ const ExperienceSection = styled.section`
     padding: clamp(28px, 4vw, 46px);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.82);
+    background: var(--surface-card);
   }
 
   .role-meta {

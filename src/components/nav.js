@@ -8,7 +8,7 @@ const Header = styled.header`
   z-index: 30;
   height: var(--header-height);
   border-bottom: 1px solid var(--border);
-  background: rgba(247, 246, 242, 0.9);
+  background: var(--header-bg);
   backdrop-filter: blur(18px);
 
   .inner {
@@ -33,7 +33,7 @@ const Header = styled.header`
 
   .brand:hover {
     background: var(--mint-300);
-    color: #fff;
+    color: var(--button-text);
   }
 
   .desktop-links {
@@ -60,7 +60,7 @@ const Header = styled.header`
   }
 
   .desktop-links .resume::after {
-    content: 'update pending';
+    content: 'updated';
     margin-left: 8px;
     color: var(--amber-300);
     font-size: 9px;
@@ -129,7 +129,7 @@ const Header = styled.header`
       padding: 32px 20px 38px;
       border: 0;
       border-bottom: 1px solid var(--border-strong);
-      background: rgba(255, 255, 255, 0.98);
+      background: var(--surface-card-strong);
       color: inherit;
       box-shadow: var(--shadow);
       visibility: ${props => (props.open ? 'visible' : 'hidden')};
@@ -219,8 +219,7 @@ const Nav = () => {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              title="Earlier career snapshot; current role details are on this page"
-            >
+              title="Download Kishan Rekhadia’s résumé">
               Résumé
             </a>
           </li>
@@ -233,8 +232,7 @@ const Nav = () => {
           aria-expanded={open}
           aria-controls="mobile-navigation"
           aria-label={open ? 'Close navigation' : 'Open navigation'}
-          onClick={() => setOpen(value => !value)}
-        >
+          onClick={() => setOpen(value => !value)}>
           <span aria-hidden="true" />
         </button>
 
@@ -244,8 +242,7 @@ const Nav = () => {
           className="mobile-panel"
           aria-label="Mobile navigation"
           open={open}
-          aria-hidden={!open}
-        >
+          aria-hidden={!open}>
           {navLinks.map(link => (
             <a key={link.name} href={link.url} onClick={closeMenu} tabIndex={open ? 0 : -1}>
               {link.name}
@@ -257,9 +254,8 @@ const Nav = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}
-            tabIndex={open ? 0 : -1}
-          >
-            Earlier résumé · update pending ↗
+            tabIndex={open ? 0 : -1}>
+            Download résumé ↗
           </a>
         </dialog>
       </nav>

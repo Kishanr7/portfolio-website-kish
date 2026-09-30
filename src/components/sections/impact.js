@@ -46,8 +46,8 @@ const ImpactSection = styled.section`
     padding: 28px;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.82);
-    box-shadow: 0 12px 36px rgba(37, 48, 80, 0.06);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-soft);
   }
 
   article:first-child,
