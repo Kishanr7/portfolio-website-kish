@@ -17,3 +17,10 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Browsers must revalidate the self-removing worker on every visit. This
+# retires the old Gatsby offline app shell that can otherwise blank the site.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

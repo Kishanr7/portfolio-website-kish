@@ -41,6 +41,9 @@ module.exports = {
         icon: 'src/images/monogram.png',
       },
     },
+    // Replaces the retired offline worker with a self-removing worker so
+    // returning visitors cannot receive a stale Gatsby app shell.
+    `gatsby-plugin-remove-serviceworker`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
