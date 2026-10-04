@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
 import { graphql, useStaticQuery } from 'gatsby';
+import CalibreRegularWoff2 from '@fonts/Calibre/Calibre-Regular.woff2';
+import CalibreSemiboldWoff2 from '@fonts/Calibre/Calibre-Semibold.woff2';
+import SFMonoRegularWoff2 from '@fonts/SFMono/SFMono-Regular.woff2';
 
 const Head = ({ title, description, image }) => {
   const { pathname } = useLocation();
@@ -56,6 +59,27 @@ const Head = ({ title, description, image }) => {
       <link rel="canonical" href={seo.url} />
       <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
       <link rel="icon" href="/monogram.svg" type="image/svg+xml" />
+      <link
+        rel="preload"
+        href={CalibreRegularWoff2}
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href={CalibreSemiboldWoff2}
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href={SFMonoRegularWoff2}
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
       <meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)" />
       <meta name="theme-color" content="#191b1f" media="(prefers-color-scheme: dark)" />
       <meta name="description" content={seo.description} />

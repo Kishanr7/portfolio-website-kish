@@ -9,21 +9,21 @@ const Fonts = css`
     src: url(${CalibreRegularWoff2}) format('woff2');
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
   }
   @font-face {
     font-family: 'Calibre';
     src: url(${CalibreSemiboldWoff2}) format('woff2');
     font-weight: 600;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
   }
   @font-face {
     font-family: 'SF Mono';
     src: url(${SFMonoRegularWoff2}) format('woff2');
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
   }
 `;
 

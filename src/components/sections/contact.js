@@ -15,6 +15,10 @@ const ContactSection = styled.section`
     color: var(--contrast-text);
   }
 
+  .eyebrow {
+    color: var(--contrast-accent);
+  }
+
   h2 {
     max-width: 760px;
     margin-bottom: 18px;

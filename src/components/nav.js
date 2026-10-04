@@ -198,7 +198,7 @@ const Nav = () => {
   return (
     <Header open={open}>
       <nav className="container inner" aria-label="Primary navigation">
-        <a className="brand" href="#content" aria-label="Kishan Rekhadia, home">
+        <a className="brand" href="#content" aria-label="KR, Kishan Rekhadia, home">
           KR
         </a>
 

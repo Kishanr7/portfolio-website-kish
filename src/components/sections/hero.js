@@ -82,6 +82,13 @@ const HeroSection = styled.section`
     font-size: 16px;
   }
 
+  .credentials {
+    margin: 16px 0 0;
+    color: var(--sage-400);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
   .metrics {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -204,6 +211,9 @@ const Hero = () => (
             <dd>Deloitte President Bonus, 2026</dd>
           </div>
         </dl>
+        <p className="credentials">
+          4× AWS certified · Independent Heroku-to-AWS migration cut hosting costs by 50%.
+        </p>
       </aside>
     </div>
 
